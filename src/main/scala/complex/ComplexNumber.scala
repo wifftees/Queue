@@ -51,13 +51,13 @@ object ComplexNumberExtended {
 
     override def negate(x: ComplexNumber): ComplexNumber = ComplexNumber(-x.real, -x.imaginary)
 
-    override def fromInt(x: Int): ComplexNumber = ComplexNumber(x, 0)
+    override def fromInt(x: Int): ComplexNumber = ComplexNumber(x.toDouble, 0)
 
     // string in format: "1 + 2i"
     override def parseString(str: String): Option[ComplexNumber] = str.trim.split(" + ").toList match {
       case real :: imaginary :: Nil =>
         real.toIntOption.flatMap(realInt =>
-          imaginary.toIntOption.map(realImaginary => ComplexNumber(realInt, realImaginary))
+          imaginary.toIntOption.map(realImaginary => ComplexNumber(realInt.toDouble, realImaginary.toDouble))
         )
       case _ => None
     }
@@ -73,5 +73,5 @@ object ComplexNumberExtended {
     override def compare(x: ComplexNumber, y: ComplexNumber): Int = (x.real - y.real).toInt
   }
 
-  implicit def toComplexNumber(x: Int): ComplexNumberExtended = ComplexNumber(x, 0)
+  implicit def toComplexNumber(x: Int): ComplexNumberExtended = ComplexNumber(x.toDouble, 0)
 }
