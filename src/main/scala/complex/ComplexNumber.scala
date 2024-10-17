@@ -75,9 +75,3 @@ object ComplexNumberExtended {
 
   implicit def toComplexNumber(x: Int): ComplexNumberExtended = ComplexNumber(x, 0)
 }
-
-object Main {
-  import complex.ComplexNumberExtended._
-
-  def main(): Unit = {}
-}
